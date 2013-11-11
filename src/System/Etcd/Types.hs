@@ -11,6 +11,9 @@ import           Data.Int
 import qualified Data.Text           as T
 import           Data.Time
 
+type Ttl = Int
+type Idx = Int64
+
 data Action = Set | Delete | TestAndSet | Get | List | Watch
   deriving ( Show, Eq )
 
@@ -110,9 +113,9 @@ data Response =
            , prevValue  :: !(Maybe S.ByteString)
            , dir        :: !Bool -- only if true
            , newKey     :: !Bool -- only if true
-           , index      :: {-# UNPACK #-} !Int64
+           , index      :: {-# UNPACK #-} !Idx
            , expiration :: !(Maybe ZonedTime)
-           , ttl        :: !(Maybe Integer)
+           , ttl        :: !(Maybe Ttl)
            }
   deriving ( Show )
 
